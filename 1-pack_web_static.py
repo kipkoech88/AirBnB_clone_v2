@@ -4,21 +4,23 @@ package static file
 as archives to be deployed
 on nginx
 """
-import os
 from fabric.api import local
 from datetime import datetime
+import os
 
 
 def do_pack():
-    """ check if the versions
-    folder exists and if not
-    create a new one """
+    """pack all content within web_static
+    into a .tgz archive
+    The archive will be put in versions/
+    """
     if not os.path.exists("versions"):
         local("mkdir versions")
-    now = datetime.now
-    archfile = "versions/web_static_{}.tgz".format(
-                now.strftime("%Y%m%D%H%M%S"))
-    command = "tar -cfvz {} {}".format(archfile, "web_static")
-    res = local(command)
-    if not res.failed:
-        return archfile
+    now = datetime.now()
+    name = "versions/web_static_{}.tgz".format(
+        now.strftime("%Y%m%d%H%M%S")
+    )
+    cmd = "tar -cvzf {} {}".format(name, "web_static")
+    result = local(cmd)
+    if not result.failed:
+        return name
