@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 package static file
 as archives to be deployed
 on nginx
 """
 import os
-from fabric import *
+from fabric.api import *
 from datetime import datetime
 
 
