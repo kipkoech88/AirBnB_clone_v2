@@ -24,5 +24,14 @@ def hbnb():
     return "HBNB"
 
 
+@app.route("/c/<text>", strict_slashes=False)
+def cisfun(text):
+    """ Takes in a text
+    variable and displays
+    c variabe """
+    text = text.replace("_", " ")
+    return "C {}".format(text)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
