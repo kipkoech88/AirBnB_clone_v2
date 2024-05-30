@@ -4,7 +4,7 @@ Initialize Flask app
 with two routes
 with strict_slashes=False
 """
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
@@ -48,6 +48,15 @@ def is_a_number(n):
     """ Displays  is a number
     else returns an error """
     return "{} is a number".format(n)
+
+
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def temp(n):
+    """ Passes n
+    and renders it
+    in the template
+    """
+    return render_template("5-number.html", n=n)
 
 
 if __name__ == "__main__":
